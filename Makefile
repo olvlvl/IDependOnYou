@@ -3,3 +3,6 @@ test: node_modules
 
 node_modules:
 	@npm install
+
+clean:
+	rm -Rf node_modules

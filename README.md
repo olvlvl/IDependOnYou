@@ -1,4 +1,4 @@
-# IDependOnYou <3
+# IDependOnYou <3 [![Build Status](https://travis-ci.org/olvlvl/IDependOnYou.svg?branch=master)](https://travis-ci.org/olvlvl/IDependOnYou)
 
 **IDependOnYou** is a very bare approach to JavaScript asynchronous module definition, also known
 as [AMD][]. An approach so bare that it only resolves the dependencies between what you define
@@ -80,6 +80,25 @@ you use `define(id, dependencies?, factory)` to define something and
 Using **IDependOnYou** with the previous example finally produces the expected results:
 
 http://jsfiddle.net/olvlvl/szJzL/
+
+
+
+
+
+----------
+
+
+
+
+
+## Testing
+
+The test suite is ran with the `make test` command. Dependencies are installed if required.
+The directory can later be cleaned with the `make clean` command.
+
+The package is continuously tested by Travis CI.
+
+[![Build Status](https://travis-ci.org/olvlvl/IDependOnYou.svg?branch=master)](https://travis-ci.org/olvlvl/IDependOnYou)
 
 
 
