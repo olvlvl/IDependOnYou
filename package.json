@@ -1,0 +1,28 @@
+{
+	"name": "olvlvl-idependonyou",
+	"version": "0.0.2",
+	"description": "A bare approach to JavaScript asynchronous module definition",
+	"author": "Olivier Laviale <olivier.laviale@gmail.com>",
+
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/olvlvl/IDependOnYou"
+	},
+
+	"keywords": [
+		"amd",
+		"module",
+		"asynchronus"
+	],
+
+	"dependencies": {
+		"mocha": "1.20.x",
+		"chai": "*"
+	},
+
+	"scripts": {
+		"test": "mocha specs/*.js"
+	},
+
+	"main": "idependonyou.js"
+}

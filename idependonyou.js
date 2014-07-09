@@ -142,21 +142,78 @@ var IDependOnYou, define, require
 
 	IDependOnYou = new Engine
 
-	if ('bind' in Function.prototype)
+	if (require === undefined)
 	{
-		require = IDependOnYou.require.bind(IDependOnYou)
-		define = IDependOnYou.define.bind(IDependOnYou)
+		if ('bind' in Function.prototype)
+		{
+			require = IDependOnYou.require.bind(IDependOnYou)
+		}
+		else
+		{
+			require = function() { return IDependOnYou.require.apply(IDependOnYou, arguments) }
+		}
 	}
-	else
-	{
-		require = function() { return IDependOnYou.require.apply(IDependOnYou, arguments) }
-		define = function() { return IDependOnYou.define.apply(IDependOnYou, arguments) }
+
+	var anonymousCount = 0
+
+	define = function() {
+
+		var arg0, arg1 = [], arg2
+
+		for (var i = 0, j = arguments.length ; i < j ; i++)
+		{
+			var value = arguments[i]
+
+			switch (typeof value)
+			{
+				case 'string':
+
+					arg0 = value
+
+					break
+
+				case 'object':
+
+					arg1 = value
+
+					break
+
+				case 'function':
+
+					arg2 = value
+
+					break
+			}
+		}
+
+		if (arg0 === undefined)
+		{
+			arg0 = '__ano_' + (++anonymousCount)
+		}
+
+		if (arg2 === undefined)
+		{
+			throw new Error('A factory is required.')
+		}
+
+		return IDependOnYou.define(arg0, arg1, arg2)
 	}
 
 	define.amd = {
 
 		engine: "IDependOnYou"
 
+	}
+
+	if (typeof module == 'object')
+	{
+		module.exports = {
+
+			engine: Engine,
+			instance: IDependOnYou,
+			define: define
+
+		}
 	}
 
 } ();
