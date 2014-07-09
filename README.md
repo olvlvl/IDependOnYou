@@ -9,7 +9,7 @@ ways. In other words, it's not a stunning replacement for [RequireJS][].
 result with [RequireJS][]:
 
 ```js
-define('one', [], function() {
+define('one', function() {
 
 	alert('here0')
 
@@ -25,7 +25,7 @@ define('two', [ 'one' ], function(one) {
 
 })
 
-require([ 'two' ], function(two) {
+define([ 'two' ], function(two) {
 
 	alert('here2')
 
@@ -73,9 +73,9 @@ for you too.
 ## Usage
 
 Include `idependonyou.js` before the code you want to define/require. As with [RequireJS][]
-you use `define()` to define something and `require()` to require dependencies.
-`define.amd.engine` equals "IDependOnYou" if **IDependOnYou** is used. A `IDependOnYou` variable
-is available as well.
+you use `define(id, dependencies?, factory)` to define something and
+`define(dependencies, factory)` to require dependencies. `define.amd.engine` equals
+"IDependOnYou" if **IDependOnYou** is used. A `IDependOnYou` variable is available as well.
 
 Using **IDependOnYou** with the previous example finally produces the expected results:
 

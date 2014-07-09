@@ -1,4 +1,4 @@
-var IDependOnYou, define, require
+var IDependOnYou, define
 
 !function() {
 
@@ -9,15 +9,16 @@ var IDependOnYou, define, require
 	, completedDefineList = []
 
 	/**
-	 * Representation of a requirement.
+	 * Representation of a definition.
 	 */
-	var Require = function(dependencyList, callback)
+	var Define = function(id, dependencyList, callback)
 	{
+		this.id = id
 		this.dependencyList = dependencyList
 		this.callback = callback
 	}
 
-	Require.prototype = {
+	Define.prototype = {
 
 		isReady: function()
 		{
@@ -60,18 +61,6 @@ var IDependOnYou, define, require
 	}
 
 	/**
-	 * Representation of a definition.
-	 */
-	var Define = function(id, dependencyList, callback)
-	{
-		this.id = id
-		this.dependencyList = dependencyList
-		this.callback = callback
-	}
-
-	Define.prototype = Object.create(Require.prototype)
-
-	/**
 	 * The engine.
 	 */
 	var Engine = function()
@@ -79,20 +68,6 @@ var IDependOnYou, define, require
 	}
 
 	Engine.prototype = {
-
-		/**
-		 * Add a Require.
-		 */
-		require: function(dependencyList, callback)
-		{
-			var instance = new Require(dependencyList, callback)
-
-			pendingList.push(instance)
-
-			this.checkPending()
-
-			return this
-		},
 
 		/**
 		 * Add a Define.
@@ -141,18 +116,6 @@ var IDependOnYou, define, require
 	}
 
 	IDependOnYou = new Engine
-
-	if (require === undefined)
-	{
-		if ('bind' in Function.prototype)
-		{
-			require = IDependOnYou.require.bind(IDependOnYou)
-		}
-		else
-		{
-			require = function() { return IDependOnYou.require.apply(IDependOnYou, arguments) }
-		}
-	}
 
 	var anonymousCount = 0
 
