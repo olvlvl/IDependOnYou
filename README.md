@@ -55,6 +55,54 @@ of code. That's ~1ko once compressed.
 
 
 
+### Requiring a dependency
+
+**IDependOnYou** also provides a `require` method, although it is not exposed by default. This method returns the result of a dependency factory, or throw an exception if the dependency is not defined or not ready.
+
+```js
+var require = IDependOnYou.require
+
+try
+{
+	var one = require('one')
+}
+catch (e)
+{
+	// should throw an exception because "one" is not defined
+}
+
+define('two', [ 'one' ], function (one) {
+
+	return 2
+
+})
+
+try
+{
+	var two = require('two')
+}
+catch (e)
+{
+	// should throw an exception because "two" is not ready, 
+	// still waiting for "one"
+}
+
+define('one', function () {
+
+	return 1
+
+})
+
+var one = require('one')
+var two = require('two')
+
+console.log(one + two) // 3
+```
+
+
+
+
+
 ## Is IDependOnYou suitable for your project ?
 
 Between [Brickrouge][] and [Icybee][], I use a lot of JavaScript to power custom elements which I

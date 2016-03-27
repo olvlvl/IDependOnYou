@@ -74,3 +74,45 @@ describe('define', function() {
 	})
 
 })
+
+describe('require', function () {
+
+	var req1
+	var req2
+	var req1Name = 'req1-' + Math.random()
+	var req2Name = 'req2-' + Math.random()
+	var req1rc = 'req1rc-' + Math.random()
+	var req2rc = 'req2rc-' + Math.random()
+
+	it("should throw exception on undefined", function () {
+
+		expect(function () { IDependOnYou.require(req1Name) }).to.throw(Error)
+
+	})
+
+	it("should throw exception on not ready", function () {
+
+		define(req2Name, [ req1Name ], function () {
+
+			return req2rc
+
+		})
+
+		expect(function () { IDependOnYou.require(req2Name) }).to.throw(Error)
+
+	})
+
+	it("should return factory result", function () {
+
+		define(req1Name, function () {
+
+			return req1rc
+
+		})
+
+		expect(IDependOnYou.require(req1Name)).to.equal(req1rc)
+		expect(IDependOnYou.require(req2Name)).to.equal(req2rc)
+
+	})
+
+})

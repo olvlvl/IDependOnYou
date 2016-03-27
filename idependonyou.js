@@ -64,8 +64,12 @@ var IDependOnYou, define, module
 
 		/**
 		 * Add a Define.
+		 *
+		 * @param {string} id Dependency identifier.
+		 * @param {Array} dependencyList
+		 * @param {function} callback
 		 */
-		define: function(id, dependencyList, callback)
+		define: function (id, dependencyList, callback)
 		{
 			var instance = new Define(id, dependencyList, callback)
 
@@ -75,6 +79,21 @@ var IDependOnYou, define, module
 			this.checkPending()
 
 			return this
+		},
+
+		/**
+		 * @param {string} id Dependency identifier.
+		 *
+		 * @returns {*}
+		 */
+		require: function (id)
+		{
+			if (!(id in completedDefineList))
+			{
+				throw new Error("Dependency not ready or not defined: `" + id + "`")
+			}
+
+			return completedDefineList[id]
 		},
 
 		/**
@@ -158,7 +177,8 @@ var IDependOnYou, define, module
 		module.exports = {
 
 			engine: IDependOnYou,
-			define: define
+			define: define,
+			require: IDependOnYou.require
 
 		}
 	}
