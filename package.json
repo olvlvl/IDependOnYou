@@ -15,9 +15,9 @@
 		"asynchronus"
 	],
 
-	"dependencies": {
-		"mocha": "1.20.x",
-		"chai": "*"
+	"devDependencies": {
+		"mocha": "^2.4",
+		"chai": "^3.5"
 	},
 
 	"scripts": {
