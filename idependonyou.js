@@ -1,6 +1,6 @@
 var IDependOnYou, define, module
 
-!function() {
+!function () {
 
 	"use strict";
 
