@@ -1,4 +1,4 @@
-# IDependOnYou <3 [![Build Status](https://travis-ci.org/olvlvl/IDependOnYou.svg?branch=master)](https://travis-ci.org/olvlvl/IDependOnYou)
+# IDependOnYou ♥ [![Build Status](https://travis-ci.org/olvlvl/IDependOnYou.svg?branch=master)](https://travis-ci.org/olvlvl/IDependOnYou)
 
 **IDependOnYou** is a very bare approach to JavaScript asynchronous module definition, also known
 as [AMD][]. An approach so bare that it only resolves the dependencies between what you define
