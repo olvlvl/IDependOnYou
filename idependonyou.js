@@ -11,7 +11,7 @@ var IDependOnYou, define
 	/**
 	 * Representation of a definition.
 	 */
-	var Define = function(id, dependencyList, callback)
+	function Define(id, dependencyList, callback)
 	{
 		this.id = id
 		this.dependencyList = dependencyList
@@ -63,7 +63,7 @@ var IDependOnYou, define
 	/**
 	 * The engine.
 	 */
-	var Engine = function()
+	function Engine()
 	{
 	}
 
@@ -168,7 +168,7 @@ var IDependOnYou, define
 
 	}
 
-	if (typeof module == 'object')
+	if (typeof module === 'object')
 	{
 		module.exports = {
 
