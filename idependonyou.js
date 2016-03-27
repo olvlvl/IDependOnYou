@@ -1,4 +1,4 @@
-var IDependOnYou, define
+var IDependOnYou, define, module
 
 !function() {
 
@@ -60,14 +60,7 @@ var IDependOnYou, define
 
 	}
 
-	/**
-	 * The engine.
-	 */
-	function Engine()
-	{
-	}
-
-	Engine.prototype = {
+	IDependOnYou = {
 
 		/**
 		 * Add a Define.
@@ -115,8 +108,6 @@ var IDependOnYou, define
 
 	}
 
-	IDependOnYou = new Engine
-
 	var anonymousCount = 0
 
 	define = function() {
@@ -130,21 +121,15 @@ var IDependOnYou, define
 			switch (typeof value)
 			{
 				case 'string':
-
 					arg0 = value
-
 					break
 
 				case 'object':
-
 					arg1 = value
-
 					break
 
 				case 'function':
-
 					arg2 = value
-
 					break
 			}
 		}
@@ -172,8 +157,7 @@ var IDependOnYou, define
 	{
 		module.exports = {
 
-			engine: Engine,
-			instance: IDependOnYou,
+			engine: IDependOnYou,
 			define: define
 
 		}
